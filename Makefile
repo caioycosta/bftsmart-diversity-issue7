@@ -1,9 +1,9 @@
 .PHONY : clean all
 
 all :
-	cd bftsmart; ant
+	cd bftsmart; mkdir -p bin; ant
 
 
 
 clean :
-	echo "TODO clean"
+	cd bftsmart; rm -rf bin
