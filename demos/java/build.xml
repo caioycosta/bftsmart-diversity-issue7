@@ -18,7 +18,7 @@
 		</javac>
 	</target>
 	<target name="jar" description="Compression target">
-		<jar jarfile="${build.dir}/ZeroServer.jar">
+		<jar jarfile="${build.dir}/demo-java.jar">
 			<fileset dir="${build.dir}">
 				<include name="**/*.class" />
 			</fileset>
