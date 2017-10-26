@@ -2,4 +2,5 @@ package bftbench;
 
 message Vazio
 {
+	optional int32 Test = 1;
 }

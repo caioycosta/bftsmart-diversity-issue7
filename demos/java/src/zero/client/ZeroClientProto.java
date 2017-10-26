@@ -26,6 +26,9 @@ do {
 VazioOuterClass.Vazio.Builder reqst;
 reqst = VazioOuterClass.Vazio
                     .newBuilder();
+
+reqst.setTest(42);
+
 byte[] msg = reqst.build().toByteArray();
 System.out.println("--");
 System.out.println(msg.length);

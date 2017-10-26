@@ -6,8 +6,8 @@
 #define NAO_UTILIZADA(x) (void)(x)
 
 int execute(BFT_BYTE cmd[], int siz, BFT_BYTE ** mem) {
-    printf("--");
-    printf("Recebido %d bytes",siz);
+    printf("--\n");
+    printf("Recebido %d bytes\n",siz);
     Bftbench__Vazio *msg = bftbench__vazio__unpack(NULL, siz, (const uint8_t*)cmd);
     Bftbench__Vazio rsp = BFTBENCH__VAZIO__INIT;
     unsigned int tamanho = bftbench__vazio__get_packed_size(&rsp);
@@ -15,7 +15,7 @@ int execute(BFT_BYTE cmd[], int siz, BFT_BYTE ** mem) {
 
     bftbench__vazio__pack(&rsp, (uint8_t*) out);
     (*mem) = out;
-    printf("Enviando %d bytes",tamanho);
+    printf("Enviando %d bytes\n",tamanho);
     return tamanho;
 }
 
