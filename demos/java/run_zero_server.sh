@@ -9,6 +9,8 @@ set -e
 
 java -cp "$BASEFOLDER/../../bftsmart/library/lib/*:"\
 "$BASEFOLDER/../../bftsmart/bin/BFT-SMaRt.jar:"\
-"$BASEFOLDER/bin/demo-java.jar" bftsmart.diversity.demos.zero.ServerLaunch $1 0
+"$BASEFOLDER/../../protobuf/build/protobuf-runtime.jar:"\
+"$BASEFOLDER/../protobuf/zero/build/vazio-proto.jar:"\
+"$BASEFOLDER/bin/demo-java.jar" bftsmart.diversity.demos.zero.ServerLaunchProto $1 0
 
 
