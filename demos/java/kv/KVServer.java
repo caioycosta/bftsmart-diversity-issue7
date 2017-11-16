@@ -6,6 +6,8 @@
 package bftsmart.diversity.demos.kv;
 
 import bftbench.EstadoOuterClass;
+import bftbench.MapFieldEntryOuterClass;
+import bftbench.MapFieldEntryOuterClass.MapFieldEntry;
 import bftbench.EstadoOuterClass.Estado;
 import bftbench.RequestOuterClass;
 import bftbench.ResponseOuterClass;
@@ -128,24 +130,26 @@ public class KVServer extends DefaultSingleRecoverable {
     public void installSnapshot(byte[] state) {
         try {
             Estado estado = EstadoOuterClass.Estado.parseFrom(state);
-            lista.clear();
-            int x = estado.getListaCount();
+            kv.clear();
+            int x = estado.getKvCount();
             for (int i = 0; i < x; i++) {
-                lista.add(estado.getLista(i));
+                MapFieldEntry mp = estado.getKv(i);
+                kv.put(mp.getKey(), mp.getValue());
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
     public byte[] getSnapshot() {
         Estado.Builder estbuil = Estado.newBuilder();
-        int x = lista.size();
-        for (int i = 0; i < x; i++) {
-            estbuil.addLista(lista.get(i));
-        }
+        ArrayList<string> chaves = new ArrayList(kv.keySet());
+				Collections.sort(chaves);					
+				for (int i = 0; i < chaves.size(); i++) {
+            estbuil.addKv(MapFieldEntry.newBuilder().setKey(chaves.get(i)).setValue(kv.get(chaves.get(i))));
+					}
+					break;
         return estbuil.build().toByteArray();
     }
 
