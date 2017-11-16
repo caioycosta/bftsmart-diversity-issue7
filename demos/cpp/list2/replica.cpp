@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <Estado.pb.h>
 #include <Request.pb.h>
 #include <Response.pb.h>
@@ -77,16 +78,18 @@ int execute(BFT_BYTE cmd[], int siz, BFT_BYTE ** mem) {
 }
 
 int replica::appExecuteOrdered(BYTE cmd[], int siz, BYTE ** out) {    
+	printf("appExecuteOrdered called\n");
     return execute(cmd, siz, out);
 }
 
 int replica::executeUnordered(BYTE cmd[], int siz, BYTE ** out) {
+		printf("executeUnordered called\n");
      return execute(cmd, siz, out);
 }
 
 void replica::installSnapshot(BYTE stateNovo[], int siz) {
     using namespace bftbench;
-
+	printf("installSnapshot called\n");
     Estado est;
     est.Clear();
 
@@ -104,6 +107,7 @@ void replica::installSnapshot(BYTE stateNovo[], int siz) {
 
 
 int replica::getSnapshot(BYTE ** mem) {
+	printf("getSnapshot called\n");
     using namespace bftbench;
     Estado est;
     est.Clear();
@@ -133,7 +137,14 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    replica r(atoi(argv[1]), argv[2]);
+    replica * r = new replica(atoi(argv[1]), argv[2]);
+	r->startService();
+	printf("Acabou.?\n");
+	
+	while (1) {
+		sleep(1);
+	}
+	
     return 0;
 }
 

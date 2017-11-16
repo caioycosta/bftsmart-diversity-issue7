@@ -26,7 +26,7 @@ func main() {
 				act := bftbench.Request_ADD
 				req.Action = &act
 				fmt.Println("value : ")
-				fmt.Scanln(text)
+				fmt.Scanln(&text)
 				i, err := strconv.Atoi(text)
 				i32 := int32(i)
 				checkError(err)
@@ -42,7 +42,7 @@ func main() {
                                 act := bftbench.Request_REMOVE
                                 req.Action = &act
                                 fmt.Println("value : ")
-                                fmt.Scanln(text)
+                                fmt.Scanln(&text)
                                 i, err := strconv.Atoi(text)
                                 i32 := int32(i)
                                 checkError(err)
@@ -71,7 +71,7 @@ func main() {
                                 act := bftbench.Request_CONTAINS
                                 req.Action = &act
                                 fmt.Println("value : ")
-                                fmt.Scanln(text)
+                                fmt.Scanln(&text)
                                 i, err := strconv.Atoi(text)
                                 i32 := int32(i)
                                 checkError(err)
@@ -87,7 +87,7 @@ func main() {
                                 act := bftbench.Request_GET
                                 req.Action = &act
                                 fmt.Println("value : ")
-                                fmt.Scanln(text)
+                                fmt.Scanln(&text)
                                 i, err := strconv.Atoi(text)
                                 i32 := int32(i)
                                 checkError(err)

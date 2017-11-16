@@ -10,8 +10,8 @@ from bftsmart_serverlib import *
 
 class BFTList(BFTSMaRtServer):
     def __init__(self,classpth,id,dllpath):
-        super(BFTList,self).__init__(classpth,id,dllpath)
-        self.state = list()        
+		self.state = list()
+		super(BFTList,self).__init__(classpth,id,dllpath)
 
     def execute(self, input):
         req = Request_pb2.Request()

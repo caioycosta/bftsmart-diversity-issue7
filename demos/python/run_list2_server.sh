@@ -22,7 +22,7 @@ PASTAJAVA=$($BASEFOLDER/../../scripts/findjava.sh)
 export LD_LIBRARY_PATH=$PASTAJAVA/jre/lib/amd64/server
 
 echo 'Library path' $LD_LIBRARY_PATH
-
+export PYTHONPATH=$BASEFOLDER/$FACDCLSPTH:$BASEFOLDER/list2:$BASEFOLDER/$PROTOCLSPTH:$BASEFOLDER/../../protobuf/build/lib/python2.7/site-packages
 
 echo
 echo
