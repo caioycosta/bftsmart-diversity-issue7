@@ -1,121 +1,32 @@
 #!/bin/bash
 
 set -e # quit on error
+#set -x #debug mode
 
-echo "Choose demo:"
-echo "zn) zero (null request, no protocol buffers) -- only Java!"
-echo "z) zero (null request, using protocol buffers) -- only Java and C."
+echo "Type in desired demo:"
+echo "zero-plain (null request, no protocol buffers) -- only Java!"
+echo "zero (null request, using protocol buffers) -- only Java and C."
+echo "list2 (list application, different implementations) -- Java, C, C++, Python and Go"
+echo "kv (key-value store) -- Java, C, C++, Python and Go"
+echo " "
 
 read
-case $REPLY in
-zn)
-	echo "Zero (no protocol buffers) selected."
-	DEMO=zero-plain
-;;
-z)
-        echo "Zero (with protocol buffers) selected."
-        DEMO=zero
-;;
-*)
-	echo "Invalid option."
-	exit 1
-;;
-esac
+DEMO=$REPLY
 
-echo "Choose server 0 language:"
-echo "j) java"
-echo "c) C"
+for i in {0..3}
+do
+echo "Choose server $i language:"
+echo "Available languages:"
+find . -iname "run_$DEMO""_server.sh" | xargs -d'\n' -I'{}' bash -c 'basename $(dirname "{}")'
 read
-case $REPLY in
-j)
-        echo "Java selected."
-        SERVER0=java
-;;
-c)
-	echo "C selected."
-	SERVER0=c
-;;
-*)
-        echo "Invalid option."
-        exit 1
-;;
-esac
-
-echo "Choose server 1 language:"
-echo "c) C"
-echo "j) java"
-read
-case $REPLY in
-c)
-        echo "C selected."
-        SERVER1=c
-;;
-j)
-        echo "Java selected."
-        SERVER1=java
-;;
-*)
-        echo "Invalid option."
-        exit 1
-;;
-esac
-
-echo "Choose server 2 language:"
-echo "c) C"
-echo "j) java"
-read
-case $REPLY in
-c)
-        echo "C selected."
-        SERVER2=c
-;;
-j)
-        echo "Java selected."
-        SERVER2=java
-;;
-*)
-        echo "Invalid option."
-        exit 1
-;;
-esac
-
-echo "Choose server 3 language:"
-echo "c) C"
-echo "j) java"
-read
-case $REPLY in
-j)
-        echo "Java selected."
-        SERVER3=java
-;;
-c)
-        echo "C selected."
-        SERVER3=c
-;;
-*)
-        echo "Invalid option."
-        exit 1
-;;
-esac
+export SERVER$i=$REPLY
+done
 
 echo "Choose client language:"
-echo "c) C"
-echo "j) java"
+echo "Available languages:"
+find . -iname "run_$DEMO""_client.sh" | xargs -d'\n' -I'{}' bash -c 'basename $(dirname "{}")'
 read
-case $REPLY in
-j)
-        echo "Java selected."
-        CLIENT=java
-;;
-c)
-        echo "C selected."
-        CLIENT=c
-;;
-*)
-        echo "Invalid option."
-        exit 1
-;;
-esac
+CLIENT=$REPLY
 
 cd ..
 
