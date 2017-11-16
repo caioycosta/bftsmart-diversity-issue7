@@ -251,7 +251,7 @@ libprotoc_la_OBJECTS = $(am_libprotoc_la_OBJECTS)
 libprotoc_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libprotoc_la_LDFLAGS) $(LDFLAGS) -o $@
-#am__EXEEXT_1 = zcgzip$(EXEEXT) zcgunzip$(EXEEXT)
+am__EXEEXT_1 = zcgzip$(EXEEXT) zcgunzip$(EXEEXT)
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_2 = google/protobuf/protobuf_lazy_descriptor_test-test_util.$(OBJEXT) \
 	google/protobuf/testing/protobuf_lazy_descriptor_test-googletest.$(OBJEXT) \
@@ -376,17 +376,17 @@ test_plugin_OBJECTS = $(am_test_plugin_OBJECTS)
 test_plugin_DEPENDENCIES = $(am__DEPENDENCIES_1) libprotobuf.la \
 	libprotoc.la $(top_builddir)/gtest/lib/libgtest.la
 am__zcgunzip_SOURCES_DIST = google/protobuf/testing/zcgunzip.cc
-#am_zcgunzip_OBJECTS =  \
-#	google/protobuf/testing/zcgunzip.$(OBJEXT)
+am_zcgunzip_OBJECTS =  \
+	google/protobuf/testing/zcgunzip.$(OBJEXT)
 zcgunzip_OBJECTS = $(am_zcgunzip_OBJECTS)
-#zcgunzip_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-#	libprotobuf.la
+zcgunzip_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	libprotobuf.la
 am__zcgzip_SOURCES_DIST = google/protobuf/testing/zcgzip.cc
-#am_zcgzip_OBJECTS =  \
-#	google/protobuf/testing/zcgzip.$(OBJEXT)
+am_zcgzip_OBJECTS =  \
+	google/protobuf/testing/zcgzip.$(OBJEXT)
 zcgzip_OBJECTS = $(am_zcgzip_OBJECTS)
-#zcgzip_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-#	libprotobuf.la
+zcgzip_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	libprotobuf.la
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -684,8 +684,8 @@ am__set_TESTS_bases = \
   bases=`echo $$bases`
 RECHECK_LOGS = $(TEST_LOGS)
 AM_RECURSIVE_TARGETS = check recheck
-#am__EXEEXT_2 =  \
-#	google/protobuf/io/gzip_stream_unittest.sh
+am__EXEEXT_2 =  \
+	google/protobuf/io/gzip_stream_unittest.sh
 TEST_SUITE_LOG = test-suite.log
 TEST_EXTENSIONS =  .test
 LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
@@ -747,7 +747,7 @@ ISAINFO =
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
-LIBS = 
+LIBS = -lz 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -843,12 +843,12 @@ target_vendor = pc
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-GZCHECKPROGRAMS = 
-#GZCHECKPROGRAMS = zcgzip zcgunzip
-GZHEADERS = 
-#GZHEADERS = google/protobuf/io/gzip_stream.h
-GZTESTS = 
-#GZTESTS = google/protobuf/io/gzip_stream_unittest.sh
+#GZCHECKPROGRAMS = 
+GZCHECKPROGRAMS = zcgzip zcgunzip
+#GZHEADERS = 
+GZHEADERS = google/protobuf/io/gzip_stream.h
+#GZTESTS = 
+GZTESTS = google/protobuf/io/gzip_stream_unittest.sh
 #NO_OPT_CXXFLAGS = $(PTHREAD_CFLAGS)
 
 # These are good warnings to turn on by default
@@ -1222,10 +1222,10 @@ test_plugin_SOURCES = \
   google/protobuf/testing/file.h                               \
   google/protobuf/compiler/test_plugin.cc
 
-#zcgzip_LDADD = $(PTHREAD_LIBS) libprotobuf.la
-#zcgzip_SOURCES = google/protobuf/testing/zcgzip.cc
-#zcgunzip_LDADD = $(PTHREAD_LIBS) libprotobuf.la
-#zcgunzip_SOURCES = google/protobuf/testing/zcgunzip.cc
+zcgzip_LDADD = $(PTHREAD_LIBS) libprotobuf.la
+zcgzip_SOURCES = google/protobuf/testing/zcgzip.cc
+zcgunzip_LDADD = $(PTHREAD_LIBS) libprotobuf.la
+zcgunzip_SOURCES = google/protobuf/testing/zcgunzip.cc
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

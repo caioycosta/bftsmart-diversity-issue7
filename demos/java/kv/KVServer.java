@@ -6,8 +6,7 @@
 package bftsmart.diversity.demos.kv;
 
 import bftbench.EstadoOuterClass;
-import bftbench.MapFieldEntryOuterClass;
-import bftbench.MapFieldEntryOuterClass.MapFieldEntry;
+import bftbench.EstadoOuterClass.MapFieldEntry;
 import bftbench.EstadoOuterClass.Estado;
 import bftbench.RequestOuterClass;
 import bftbench.ResponseOuterClass;
@@ -22,6 +21,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Collections;
 
 /**
  *
@@ -30,7 +31,7 @@ import java.util.Map;
 public class KVServer extends DefaultSingleRecoverable {
 
     static List<Integer> lista = new ArrayList<Integer>();
-	static Map<string, string> kv = new Map<string, string>();
+	static Map<String, String> kv = new HashMap<String, String>();
     private int iterations = 0;
     private long throughputMeasurementStartTime = System.currentTimeMillis();
     private int interval;
@@ -99,7 +100,7 @@ public class KVServer extends DefaultSingleRecoverable {
 					}
                     break;
                 case LIST:        
-				    ArrayList<string> chaves = new ArrayList(kv.keySet());
+				    ArrayList<String> chaves = new ArrayList<String>(kv.keySet());
 					Collections.sort(chaves);					
 					for (int i = 0; i < chaves.size(); i++) {
 						reqst.addListResponse(chaves.get(i));
@@ -144,12 +145,11 @@ public class KVServer extends DefaultSingleRecoverable {
     @Override
     public byte[] getSnapshot() {
         Estado.Builder estbuil = Estado.newBuilder();
-        ArrayList<string> chaves = new ArrayList(kv.keySet());
+        ArrayList<String> chaves = new ArrayList<String>(kv.keySet());
 				Collections.sort(chaves);					
 				for (int i = 0; i < chaves.size(); i++) {
             estbuil.addKv(MapFieldEntry.newBuilder().setKey(chaves.get(i)).setValue(kv.get(chaves.get(i))));
 					}
-					break;
         return estbuil.build().toByteArray();
     }
 
