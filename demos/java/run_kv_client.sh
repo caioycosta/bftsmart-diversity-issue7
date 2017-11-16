@@ -10,6 +10,6 @@ set -e
 java -cp "$BASEFOLDER/../../bftsmart/library/lib/*:"\
 "$BASEFOLDER/../../bftsmart/bin/BFT-SMaRt.jar:"\
 "$BASEFOLDER/../../protobuf/build/protobuf-runtime.jar:"\
-"$BASEFOLDER/../protobuf/zero/build/kv-proto.jar:"\
-"$BASEFOLDER/bin/demo-java.jar" bftsmart.diversity.demos.kv.KVClientProto $1
+"$BASEFOLDER/../protobuf/kv/build/kv-proto.jar:"\
+"$BASEFOLDER/bin/demo-kv-java.jar" bftsmart.diversity.demos.kv.KVClientProto $1
 

@@ -12,6 +12,6 @@ set -e
 java -cp "$BASEFOLDER/../../bftsmart/library/lib/*:"\
 "$BASEFOLDER/../../bftsmart/bin/BFT-SMaRt.jar:"\
 "$BASEFOLDER/../../protobuf/build/protobuf-runtime.jar:"\
-"$BASEFOLDER/../protobuf/kv/build/lista-proto.jar:"\
+"$BASEFOLDER/../protobuf/kv/build/kv-proto.jar:"\
 "$BASEFOLDER/kv/build/bench_server.jar" bftsmart.diversity.demos.kv.ServerLaunch $1 10000
 
