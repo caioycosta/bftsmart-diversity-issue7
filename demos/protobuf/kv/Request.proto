@@ -10,6 +10,6 @@ message Request
 	}
 
 	required RequestType action = 1;
-	option string key = 2;
+	optional string key = 2;
 	optional string value = 3;
 }
