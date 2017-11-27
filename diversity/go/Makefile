@@ -1,5 +1,5 @@
 PASTAJAVA := $(shell ../../scripts/findjava.sh)
-INCL=-I../../../c -I$(PASTAJAVA)/include/ -I$(PASTAJAVA)/include/linux
+INCL=-I$(shell pwd)/../c -I$(PASTAJAVA)/include/ -I$(PASTAJAVA)/include/linux
 LIBS=-L $(PASTAJAVA)/jre/lib/amd64/server
 CGO_CFLAGS=-g -Wextra -Wall $(INCL)
 CGO_LDFLAGS=build/wrapper.o build/bftsmart-c-client.o build/bftsmart-c-server.o $(LIBS) -lstdc++ -ljvm
