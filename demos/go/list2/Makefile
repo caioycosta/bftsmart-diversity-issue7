@@ -16,24 +16,35 @@ all: client server
 
 client:
 	-mkdir build
-#	gcc -o build/wrapper.o -c dummy.c
-#	gcc -o build/bftsmart-c-client.o -c dummy.c
-#	gcc -o build/bftsmart-c-server.o -c dummy.c
-#	go build main
-	cp -v ../../../diversity/c/build/wrapper.o build/
-	cp -v ../../../diversity/c/build/bftsmart-c-client.o build/
-	cp -v ../../../diversity/c/build/bftsmart-c-server.o build/
+## VERSION WARNING
+#
+# FOR GO VERSION >= 1.9, comment lines with "dummy.c" and uncomment lines with "cp"
+#
+# FOR GO VERSION < 1.9, uncommment lines with "dummy.c" and comment lines with "cp".
+##
+	gcc -o build/wrapper.o -c dummy.c
+	gcc -o build/bftsmart-c-client.o -c dummy.c
+	gcc -o build/bftsmart-c-server.o -c dummy.c
+#	cp -v ../../../diversity/c/build/wrapper.o build/
+#	cp -v ../../../diversity/c/build/bftsmart-c-client.o build/
+#	cp -v ../../../diversity/c/build/bftsmart-c-server.o build/
 	go build -o build/go-client.exe ./go-client
 
 server:
 	-mkdir build
-#	gcc -o build/wrapper.o -c dummy.c
-#	gcc -o build/bftsmart-c-client.o -c dummy.c
-#	gcc -o build/bftsmart-c-server.o -c dummy.c
-	cp -v ../../../diversity/c/build/wrapper.o build/
-	cp -v ../../../diversity/c/build/bftsmart-c-client.o build/
-	cp -v ../../../diversity/c/build/bftsmart-c-server.o build/
-#	go build main
+## VERSION WARNING
+#
+# FOR GO VERSION >= 1.9, comment lines with "dummy.c" and uncomment lines with "cp"
+#
+# FOR GO VERSION < 1.9, uncommment lines with "dummy.c" and comment lines with "cp".
+##
+
+	gcc -o build/wrapper.o -c dummy.c
+	gcc -o build/bftsmart-c-client.o -c dummy.c
+	gcc -o build/bftsmart-c-server.o -c dummy.c
+#	cp -v ../../../diversity/c/build/wrapper.o build/
+#	cp -v ../../../diversity/c/build/bftsmart-c-client.o build/
+#	cp -v ../../../diversity/c/build/bftsmart-c-server.o build/
 	go build -o build/go-server.exe ./go-server
 
 clean:

@@ -11,23 +11,23 @@ type replica struct {
     state []int32
 }
 
-func (r replica) ExecuteOrdered(command []byte) []byte {
+func (r * replica) ExecuteOrdered(command []byte) []byte {
     return r.execute(command);
 }
 
-func (r replica) ExecuteUnordered(command []byte) []byte {
+func (r * replica) ExecuteUnordered(command []byte) []byte {
     return r.execute(command);
 }
 
-func (r replica) GetSnapshot() []byte {
+func (r * replica) GetSnapshot() []byte {
     return []byte{}
 }
 
-func (r replica) InstallSnapshot(state []byte) {
+func (r * replica) InstallSnapshot(state []byte) {
     
 }
 
-func (r replica) execute(command []byte) []byte {
+func (r * replica) execute(command []byte) []byte {
 	req := new(bftbench.Request)
 	err := proto.Unmarshal(command, req)
 	checkError(err)
@@ -37,6 +37,7 @@ func (r replica) execute(command []byte) []byte {
 
 	if req.GetAction() == bftbench.Request_ADD {
         val := req.GetValue()
+	fmt.Println(val)
         res = false;
         achou = false;
         for _,element := range r.state {
@@ -47,6 +48,7 @@ func (r replica) execute(command []byte) []byte {
         }
         if achou == false {
             r.state = append(r.state, val)
+            fmt.Println(int32(len(r.state)))
             res = true;
         }
         rsp.BoolResponse = &res
@@ -85,6 +87,7 @@ func (r replica) execute(command []byte) []byte {
         return data
 	} else if req.GetAction() == bftbench.Request_SIZE {
 	    val := int32(len(r.state))
+	fmt.Println(val)
         rsp.IntResponse = &val
         data, err := proto.Marshal(rsp)
         checkError(err)
@@ -113,8 +116,9 @@ func main() {
 	r := replica{ state: []int32{} }
 	i, err := strconv.Atoi(os.Args[1])
 	checkError(err)
-	bftsmartserver.StartServiceReplica(i, os.Args[2], r);
+	bftsmartserver.StartServiceReplica(i, os.Args[2], &r);
 	bftsmartserver.FinalizarJvm()
+	fmt.Println("main finalizou")
 }
 
 
