@@ -5,7 +5,7 @@ INCL += `PKG_CONFIG_PATH=../../protobuf/build/lib/pkgconfig pkg-config --cflags 
 
 bench_server: 
 	-mkdir -p build
-	javac -cp "./../../bftsmart/bin/BFT-SMaRt.jar:../../../protobuf/build/protobuf-runtime.jar:../../protobuf/list2/build/lista-proto.jar" -d build *.java
+	javac -cp "../../../bftsmart/bin/BFT-SMaRt.jar:../../../protobuf/build/protobuf-runtime.jar:../../protobuf/list2/build/lista-proto.jar" -d build *.java
 	cd build; jar cfe bench_server.jar bftsmart.diversity.demos.list.ServerLaunch bftsmart
 
 .PHONY: clean
