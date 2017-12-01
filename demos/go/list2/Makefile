@@ -4,6 +4,7 @@ LIBS=-L $(PASTAJAVA)/jre/lib/amd64/server
 GOPATH = $(shell pwd)/../../protobuf/list2/build/go:$(shell pwd)/../../../protobuf/protobuf-go:$(shell pwd)/../../../diversity/go:$(shell pwd)
 CGO_CFLAGS=-g -Wextra -Wall $(INCL)
 CGO_LDFLAGS=$(shell pwd)/../../../diversity/c/build/wrapper.o $(shell pwd)/../../../diversity/c/build/bftsmart-c-client.o $(shell pwd)/../../../diversity/c/build/bftsmart-c-server.o $(LIBS) -lstdc++ -ljvm
+#CGO_LDFLAGS=$(shell pwd)/../../../diversity/c/build/wrapper.o $(shell pwd)/../../../diversity/c/build/bftsmart-c-client.o $(LIBS) -lstdc++ -ljvm
 #CGO_LDFLAGS=$(LIBS) -lstdc++ -ljvm
 
 export CGO_CFLAGS
