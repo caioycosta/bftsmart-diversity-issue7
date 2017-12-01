@@ -4,12 +4,10 @@ set -e # quit on error
 #set -x #debug mode
 
 echo "Type in desired demo:"
-echo "zero-plain (null request, no protocol buffers) -- only Java!"
-echo "zero (null request, using protocol buffers) -- only Java and C."
-echo "list2 (list application, different implementations) -- Java, C, C++, Python and Go"
-echo "kv (key-value store) -- Java, C, C++, Python and Go"
+# lists all available server and client demos, and prints only those that have both client and server implementations.
+join <({ for i in */run_*_server.sh; do (basename $i _server.sh); done } | sed 's/run_//' | sort | uniq) <({ for i in */run_*_client.sh; do (basename $i _client.sh); done } | sed 's/run_//' | sort | uniq)
 echo " "
-
+echo -n ">"
 read
 DEMO=$REPLY
 
@@ -18,6 +16,8 @@ do
 echo "Choose server $i language:"
 echo "Available languages:"
 find . -iname "run_$DEMO""_server.sh" | xargs -d'\n' -I'{}' bash -c 'basename $(dirname "{}")'
+echo " "
+echo -n ">"
 read
 export SERVER$i=$REPLY
 done
@@ -25,6 +25,8 @@ done
 echo "Choose client language:"
 echo "Available languages:"
 find . -iname "run_$DEMO""_client.sh" | xargs -d'\n' -I'{}' bash -c 'basename $(dirname "{}")'
+echo " "
+echo -n ">"
 read
 CLIENT=$REPLY
 
@@ -44,8 +46,6 @@ xterm -T "SERVER 2 - $SERVER2" -e ./demos/$SERVER2/run_"$DEMO"_server.sh 2 &
 sleep 2
 xterm -T "SERVER 3 - $SERVER3" -e ./demos/$SERVER3/run_"$DEMO"_server.sh 3 &
 sleep 2
-#xterm -T "CLIENT - $CLIENT" -e ./demos/$CLIENT/run_"$DEMO"_client.sh 7001 &
-echo ./demos/$CLIENT/run_"$DEMO"_client.sh 7001
 ./demos/$CLIENT/run_"$DEMO"_client.sh 7001
 
 echo "Finished script execution successfully."
